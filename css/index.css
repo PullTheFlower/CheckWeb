@@ -1,0 +1,186 @@
+body{
+    font-family: Arial,Helvetica;
+    background-image: url(../images/login_body_bg.gif);
+    background-repeat: repeat-y;
+    width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+}
+div.top{
+    margin-left:auto;
+    margin-right:auto;
+    width:980px;
+    height:65px;
+    background-color:#4682B4;
+    text-align:center;
+    font-size:20px;
+    font-weight:bolder;
+}
+span.red{
+    color:red;
+}
+div.main{
+    margin-left:auto;
+    margin-right:auto;
+    width:980;
+}
+div.head{
+    padding-top:18px;
+    color:white;
+}
+div.head_middle{
+    text-align:center;
+    font-size:20px;
+    font-weight:bolder;
+    width:980px;
+    height:40px;
+    margin-right:auto;
+    margin-left:auto;
+    background-color:#4682B4;
+    color:white;
+    padding-top:5px; 
+}
+div.main_middle{
+    margin-top:5px;
+}
+div.check_area{
+    display: none;
+    position: absolute;
+    width: 280px;
+    right: 95px;
+    bottom: 0;
+    background-color: #ccc;
+    padding: 10px;
+}
+div.footer_confirm{
+    text-align: center;
+}
+div.footer_confirm_putup{
+    margin-left: 30px;
+}
+div.footer_close{
+    margin-left: 30px;
+}
+div.save_or_putup{
+    display: none;
+}
+div.main_title{
+    margin-top: 40px;
+}
+div.login{
+    border-left: 1px solid #BDBDBD;
+    padding-left: 20px;
+    width: 490px;
+    height: 350px;
+    float: right;
+    margin-top: 30px;
+}
+div.login_title{
+    font-size: 30px;
+    font-weight: bolder;
+}
+div.login_title{
+    margin-top: 10px;
+    margin-bottom: 20px;
+   
+}
+div.user_name .password{
+    margin:5px;
+    float: right;
+
+}
+div.login_left{
+    width:100px;
+    float: left;
+    font-size: 20px;
+}
+div.login_right{
+    width:340px;
+    margin-left: 20px;
+    float: left;
+    font-size: 20px;
+}
+div.warning_one{
+    float: left;
+    height: 30px;
+    width: 490px;
+    color: red;
+    margin-left: 120px;
+}
+div.warning_two{
+    float: left;
+    height: 30px;
+    width: 490px;
+    color: red;
+    margin-left: 120px; 
+}
+span.login_btn_cancel{
+    margin-left: 63px;
+}
+div.login_tip{
+    margin-top: 20px;
+    color: #585858;
+}
+div.login_logo{
+    margin-top: 100px;
+    float: right;
+}
+div.footer{
+    float: right;
+    margin-top: 40px;
+    border-top: 1px solid #A4A4A4;
+    text-align: center;
+    width: 980px;
+}
+div.footer_intro{
+    margin-top: 10px;
+}
+
+button.dropdown-toggle{
+    display: block;
+}
+div.btn-group{
+    float: left;
+    margin-left: 30px;
+}
+div.dropdown{
+    width: 94px;
+    float: left;
+     margin-left: 30px;
+}
+div.dropdown-own{
+    width: 94px;
+    float: left;
+    position: relative;
+    margin-left: 30px;
+}
+div.now_time{
+  float: right;
+  
+  width: 450px;
+  margin-left: 0px;
+  padding-left: 0px;
+  border-left-width: 0px;
+  text-align: right;
+  font-size: 20px;
+}
+#show{
+    margin-top: 38px;
+}
+div.dropdown-own-one{
+    width: 64px;
+    float: left;
+}
+img.welcome{
+    width: 860px;
+}
+span.welcome{
+    font-size: 99px;
+    font-weight: bold;
+}
+div.welcome{
+    text-align: center;
+}
+div.out_system{
+    float: right;
+}
