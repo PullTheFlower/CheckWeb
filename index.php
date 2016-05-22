@@ -1,15 +1,6 @@
-<html>
-<head>
-<meta charset="utf-8">
-<script src="script/jquery-1.11.3.min.js"></script>
-<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link type="text/css" rel="stylesheet" href="css/index.css">
-<script type="text/javascript" src="script/bootstrap-datepicker.js"></script>
-<link type="text/css" rel="stylesheet" href="css/datepicker.css">
-<title>添加报检单</title>
-</head>
-<body>
+<?php
+  require_once("/header.php");
+?>
 
 
 <div class="main" id="show">
@@ -39,7 +30,7 @@
                 <td>客户备注</td>
                 <td><input type="text" name="customer_remark" class="form-control"></td>
                 <td>申请时间</td>
-                <td><input type="text" name="apply_time" class="span2 form-control"  id="dp1" readonly="readonly" value="点击选择时间" onfocus="if (value =='点击选择时间'){value =''}" onblur="if (value ==''){value='点击选择时间'}">
+                <td><input type="text" name="apply_time" class="span2 form-control"  id="dp1" readonly="readonly" placeholder="点击选择时间" ><!--value="点击选择时间" onfocus="if (value =='点击选择时间'){value =''}" onblur="if (value ==''){value='点击选择时间'}"-->
                 </td>
             </tr>
         </table>
@@ -65,7 +56,7 @@
                 <td><input name="coal_type[]" type="text" class="form-control"></td>
                 <td><input value="1" name="hurry[]" type="checkbox"></td>
                 <td>
-                    <input class="check_type_input form-control" name="check_type[]" type="text" readonly="readonly" value="点击添加检验类别" onfocus="if (value =='点击添加检验类别'){value =''}" onblur="if (value ==''){value='点击添加检验类别'}">
+                    <input class="check_type_input form-control" name="check_type[]" type="text" readonly="readonly" placeholder="点击添加检验类别"><!--value="点击添加检验类别" onfocus="if (value =='点击添加检验类别'){value =''}" onblur="if (value ==''){value='点击添加检验类别'}"-->
                     <div class="check_area">
                         <input type="checkbox" name="category" value="Mt" />
                         全水分
@@ -106,7 +97,7 @@
             <td><input name="coal_type[]" type="text" class="form-control"></td>
             <td><input name="hurry[]" value="1" type="checkbox"></td>
             <td>
-                <input class="check_type_input form-control" name="check_type[]" type="text" readonly="readonly" value="点击添加检验类别" onfocus="if (value =='点击添加检验类别'){value =''}" onblur="if (value ==''){value='点击添加检验类别'}">
+                <input class="check_type_input form-control" name="check_type[]" type="text" readonly="readonly" placeholder="点击添加检验类别"><!--value="点击添加检验类别" onfocus="if (value =='点击添加检验类别'){value =''}" onblur="if (value ==''){value='点击添加检验类别'}"-->
                 <div class="check_area" style="display: none; position: absolute; width: 280px; right: 95px; bottom: 0; background-color: #ccc; padding: 10px;">
                     <input type="checkbox" name="category" value="Mt" />
                         全水分
@@ -144,7 +135,7 @@
     <div class="footer_confirm">
         <div class="btn btn-primary footer_confirm" >保存</div>
         <div class="btn btn-primary footer_confirm_putup" >保存并提交</div>
-        <div class="btn btn-danger footer_close">关闭</div>
+        <div class="btn btn-danger footer_close"><a href="system.php" style="text-decoration:none;color:white;">关闭</a></div>
     </div>
   </form>  
   <div class="footer">
@@ -156,11 +147,11 @@
     $(function(){
 
     	$(".footer_confirm .footer_confirm").on("click",function(){
-            $(".save_or_putup input").val("保存");
+            $(".save_or_putup input").val("委托单保存");
             $("form").submit();
     	});
     	$(".footer_confirm .footer_confirm_putup").on("click",function(){
-            $(".save_or_putup input").val("保存并提交");
+            $(".save_or_putup input").val("委托单提交");
             $("form").submit();
     	});
         //选择公司，自动出来简称
@@ -198,10 +189,11 @@
         //单击输入框显示选择类别的窗口
         $(".main").delegate(".check_type_input", "click", function(){
             $(this).parent().find(".check_area").css("display", "block");
-        });        
-         $("div.footer_close").on("click",function(){
-            $("#show").load("welcome.html");
-        });
+        }); 
+        //引入页面的另外一种方式       
+         //$("div.footer_close").on("click",function(){
+            //$("#show").load("welcome.html");
+        //});
     });
   </script>
 

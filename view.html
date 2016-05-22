@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="/xiangmu/script/jquery-1.11.3.min.js"></script>
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/xiangmu/css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="/xiangmu/css/index.css">
+<script type="text/javascript" src="/xiangmu/script/bootstrap-datepicker.js"></script>
+<link type="text/css" rel="stylesheet" href="/xiangmu/css/datepicker.css">
+    <title></title>
+    <style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+</style>
+</head>
+<body style="background-image:none;">
+<?php
+  Date_default_timezone_set("PRC");
+  //$form_page=$_GET['formpageid'];
+  //echo $_GET['formpageid'];
+  //var_dump($form_page);
+  $formid=$_GET['id'];
+  //echo $formid;
+  $local='127.0.0.1';
+  $username='root';
+  $password='130320';
+  $database='coal';
+  //获取订单数据
+  $conn=mysqli_connect($local,$username,$password,$database)or die('连接失败');
+  $sql="select * from checkform where formid=$formid";
+  //echo $sql;
+  $result=mysqli_query($conn,$sql);
+  //var_dump($result)
+  //$row=mysqli_fetch_assoc($result);
+  $ApplyCompany=$row['applycompany'];
+  $CompanyAbbreviation=$row['companyabbreviation'];
+  $Custmoerremark=$row['customerremark'];
+  $ApplyTime=$row['applytime'];
+  //获取created生成订单编号
+  //$get_created_sql="select * from checkform where formid=$formid";
+  //$get_created_result=mysqli_query($conn,$get_created_sql);
+  //var_dump($get_created_result);
+  while($row=mysqli_fetch_assoc($result)){
+    $created=$row['created'];
+    //echo $created;
+    $form_page_id=date("mdY",strtotime($row['created']))."".sprintf("%06d",$row['formid']);
+    //echo $form_page_id;
+    $date=date("Y年d月m日",strtotime($row['applytime']));
+    $applycompany=$row['applycompany'];
+    //$coaltype=$row['coaltype'];
+  }
+  $get_coal_sql="select * from coallocation where formid=$formid";
+  $get_coal_res=mysqli_query($conn,$get_coal_sql);
+  $t="";
+  while ($res=mysqli_fetch_assoc($get_coal_res)) {
+  	  //$checkType=$res['checktype'];
+  	 $CheckType=explode(",",$res['checktype']);
+  	 //var_dump($checkType);
+  	 foreach ($CheckType as $i) {
+  	 	$t.=$i;
+  	    }
+   	 }
+  
+  //echo $t;
+  //$str="o";
+  //echo $str;
+  //echo strpos($t,$str);
+  //if (strpos($t,$str)) {
+  	//echo "呵呵";
+  //}
+  //获取委托时间
+  //$get_date_sql="select applytime from checkform where formid=$formid";
+  //$get_date_result=mysqli_query($conn,$get_date_sql);
+  //while ($res1=mysqli_fetch_assoc($get_date_result)) {
+      //$date=date("Y年d月m日",strtotime($res1['applytime']));
+ // }
+
+  //echo $ApplyCompany,$CompanyAbbreviation,$Custmoerremark,$ApplyCompany;
+?>
+<div class="main" style=" 
+    width: 980px;
+    margin-left: auto;
+    margin-right: auto;"
+>
+<div class="page_title" style="font-size:25px;text-align:center;font-weight:bolder;">
+    <p>北京华夏力鸿商品检验有限公司</p>
+    <p>委托检验申请单</p>
+</div>
+<div class="page_head">
+    <div class="page_head_left" style="  font-size: 12px;width: 300px;margin-right: 0px;float: left;margin-left: 150px;">
+        委托单号：<?php echo $form_page_id;?>
+    </div>
+    <div class="page_head_right" style="  font-size: 12px;width: 500px;margin-left: 607px;">
+        委托时间:<?php echo $date;?>
+    </div>
+</div>
+<table class="tg" style="width:850px;border:1px solid black; margin-left:auto; margin-right:auto;margin-top:18px;">
+  <tr>
+    <th class="tg-031e" rowspan="9" style="width: 36px;text-align:center;">委<br/>托<br/>方</th>
+    <th class="tg-031e">委托单位</th>
+    <th class="tg-031e" colspan="2"><?php echo $applycompany;?></th>
+    <th class="tg-031e">联系人</th>
+    <th class="tg-031e" style="width:252px;"></th>
+  </tr>
+  <tr>
+    <td class="tg-031e">运输工具标识</td>
+    <td class="tg-031e" colspan="2"></td>
+    <td class="tg-031e">联系电话</td>
+    <td class="tg-031e"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">申报重量/t</td>
+    <td class="tg-031e" colspan="2">14</td>
+    <td class="tg-031e">粒度/min</td>
+    <td class="tg-031e">50</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">煤炭存放地</td>
+    <td class="tg-031e" colspan="2"></td>
+    <td class="tg-031e">煤种</td>
+    <td class="tg-031e"></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">检验类别与标准</td>
+    <td class="tg-031e" colspan="4"><input type="checkbox" checked="checked">船采 <input type="checkbox">列采 <input type="checkbox">垛采 <input type="checkbox">自选样<br>采样：<input type="checkbox">GB475-2008<input type="checkbox">GB/T1949.1-2004 <br>制样：<input type="checkbox">GB74-2008<input type="checkbox">GB/T1994.2-2004</td>
+  </tr>
+  <tr>
+    <td class="tg-031e" rowspan="2">检验项目与标准</td>
+    <td class="tg-031e" colspan="4">常规检测项目标准：<br><input type="checkbox" <?php if (strpos($t,"Mt")>=0) {echo 'checked="checked"';}?>>全水分GB/T211-2007<input type="checkbox" <?php if (strpos($t,"Mad")) {echo 'checked="checked"';}?>>水分GB/T212-2008<input type="checkbox" <?php if (strpos($t,"Aad")) {echo 'checked="checked"';}?>>灰分GB/T323-2008<br><input type="checkbox" <?php if (strpos($t,"Vad")) {echo 'checked="checked"';}?>>挥发分GB/T212-2008<input type="checkbox" <?php if (strpos($t,"St")) {echo 'checked="checked"';}?>>全硫GB/T214-2008<input type="checkbox" <?php if (strpos($t,"C")) {echo 'checked="checked"';}?>>固定碳GB/T212-2008<br><input type="checkbox" <?php if (strpos($t,"H")) {echo 'checked="checked"';}?>>氯GB/T476-2008<input type="checkbox" <?php if (strpos($t,"Qb")) {echo 'checked="checked"';}?>>发热量GB/T213-2008<input type="checkbox" <?php if (strpos($t,"CB")) {echo 'checked="checked"';}?>>焦砟特性GB/T212-2008</td>
+  </tr>
+  <tr>
+    <td class="tg-031e" colspan="4">其他检验项目标准：<br><input type="checkbox">灰熔融性GB/T219-2008<input type="checkbox">胶质层指数GB/479-2008<br><input type="checkbox">粒层分析GB/T477-2008<input type="checkbox">可磨性指数GB/T2565-1998<br><input type="checkbox">其他_____</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">其他要求</td>
+    <td class="tg-031e" colspan="4">传真：<input type="checkbox">否<input type="checkbox">是    备样：<input type="checkbox">否<input type="checkbox">是<br>快递：<input type="checkbox">否<input type="checkbox">是</td>
+  </tr>
+  <tr>
+    <td class="tg-031e" colspan="5">我方保证对所提供的一切资料、实物的真实性负责，并遵守通用条款。<br><br><br>客户代表签字：                                                           年       月        日</td>
+  </tr>
+  <tr>
+    <td class="tg-031e" rowspan="2" style="width: 36px;text-align:center;">检<br/>验<br/>方</td>
+    <td class="tg-031e">预计完成时间</td>
+    <td class="tg-031e">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td class="tg-031e">收费情况</td>
+    <td class="tg-031e" colspan="2">单价_____加急费用_____制样_____<br>实收费用_____<input type="checkbox">月结<input type="checkbox">预付款</td>
+  </tr>
+  <tr>
+    <td class="tg-031e" colspan="5">我方按客户要求和相关标准及时提供准确、公正的检验检测结果。</td>
+  </tr>
+  <tr>
+    <td class="tg-031e" style="width: 36px;text-align:center;">说<br/>明</td>
+    <td class="tg-031e" colspan="5">1.本委托检验申请单一式两份，第一联由公司保存，第二联作为委托人取证书凭证。<br>2.本公司最终结果为正本证书一份，需要额外增加正本和副体的另行收取费用。<br>3.最终结果以正式报告为准。<br>4.请仔细阅读通用条款的相关内容。</td>
+  </tr>
+  <tr>
+    <td class="tg-031e" style="width: 36px;height:60px;text-align:center;">备<br/>注</td>
+    <td class="tg-031e" colspan="5"></td>
+  </tr>
+</table>
+<div class="footer_intro" style="color:#BDBDBD;font-size:10px;margin-left:100px;">
+    <p>地址：北京市朝阳区西坝河东里18号三元大厦11层&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：100028</p>
+    <p>电话：010-84609113&nbsp;&nbsp;&nbsp;&nbsp;传真：010-84603295&nbsp;&nbsp;&nbsp;&nbsp;网址：hxlh.org</p>
+</div>
+<div class="footer_btn" style="text-align:center;">
+    <div class="btn btn-primary">打印</div>
+    <div class="btn btn-warning">打印条款</div>
+    <div class="btn btn-danger"><a href="javascript:history.go(-1);"style="color:white;text-decoration:none;">关闭</a></div>
+</div>
+</div>
+<div class="foot" style=" margin-top: 40px;border-top: 1px solid #A4A4A4;text-align: center;width: 980px;">
+        <div class="footer_intro">design by zzh.</div>
+  </div>
+</body>
+</html>

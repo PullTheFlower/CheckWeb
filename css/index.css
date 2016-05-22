@@ -5,6 +5,7 @@ body{
     width: 980px;
     margin-left: auto;
     margin-right: auto;
+    font-family: verdana;
 }
 div.top{
     margin-left:auto;
@@ -53,6 +54,7 @@ div.check_area{
     padding: 10px;
 }
 div.footer_confirm{
+
     text-align: center;
 }
 div.footer_confirm_putup{
@@ -126,6 +128,8 @@ div.login_logo{
     float: right;
 }
 div.footer{
+   
+    bottom:20px;
     float: right;
     margin-top: 40px;
     border-top: 1px solid #A4A4A4;
@@ -157,7 +161,7 @@ div.dropdown-own{
 div.now_time{
   float: right;
   
-  width: 450px;
+  width: 535px;
   margin-left: 0px;
   padding-left: 0px;
   border-left-width: 0px;
@@ -183,4 +187,37 @@ div.welcome{
 }
 div.out_system{
     float: right;
+}
+a.first_page{
+    text-decoration: none;
+    color: black;
+}
+div.page a{
+    border: 1px solid #aaaadd;
+    padding: 2px 5px 2px 5px;
+    margin-left: 7px;
+    margin-right: 7px;
+    font-size: 15px;
+}
+div.page span.current{
+    border: 1px solid #000099;
+    background-color: #000099;
+    padding: 4px 6px 4px 5px;
+    margin: 2px;
+    color: #fff;
+    font-weight: bolder;
+}
+div.page span.disable{
+    border:1px solid #eee;
+    padding:2px 5px 2px 5px;
+    margin: 2px;
+    color: #ddd;
+}
+div.page{
+    text-align: center;
+    margin-top: 50px;
+}
+div.page form{
+    display: inline;
+    
 }

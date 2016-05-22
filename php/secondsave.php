@@ -5,8 +5,8 @@
 </head>
 <body>
 <?php
-
-require_once("alter.php");
+        
+        require_once("alter.php");
         echo '<meta charset="utf-8">';
         //print_r($_POST);
 		$ApplyCompany=$_POST['apply_company'];
@@ -18,6 +18,7 @@ require_once("alter.php");
 		$Hurry=$_POST['hurry'];
 		$CheckType=$_POST['check_type'];
 		$SaveOrPutup=$_POST['save_or_putup'];
+		$formid=$_POST['formid'];
 		//print_r($Target);
 		//var_dump($Target);
 		//echo "$CheckType";
@@ -51,6 +52,10 @@ if ($ApplyCompany==""||$CustomerRemark==""||$ApplyTime==""||$CheckTypes_null==1|
 		$database='coal';
 
 		$conn=mysqli_connect($local,$username,$password,$database)or die('Error to connect');
+		$delete_sql="delete from checkform where formid=$formid";
+		$delete_result=mysqli_query($conn,$delete_sql);
+		$delete_sql2="delete from coallocation where formid=$formid";
+		$delete_sql2_result=mysqli_query($conn,$delete_sql2);
 		
 		$sql="insert into checkform(applycompany,companyabbreviation,customerremark,applytime,saveorputup)values('$ApplyCompany','$CompanyAbbreviation','$CustomerRemark','$ApplyTime','$SaveOrPutup')";
 		$result=mysqli_query($conn,$sql);
